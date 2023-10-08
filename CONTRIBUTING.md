@@ -4,12 +4,13 @@ etcd is Apache 2.0 licensed and accepts contributions via GitHub pull requests.
 This document outlines basics of contributing to etcd.
 
 This is a rough outline of what a contributor's workflow looks like:
-* [Find something to work on](#Find-something-to-work-on)
-* [Setup development environment](#Setup-development-environment)
-* [Implement your change](#Implement-your-change)
-* [Commit your change](#Commit-your-change)
-* [Create a pull request](#Create-a-pull-request)
-* [Get your pull request reviewed](#Get-your-pull-request-reviewed)
+
+* [Find something to work on](#find-something-to-work-on)
+* [Setup development environment](#setup-development-environment)
+* [Implement your change](#implement-your-change)
+* [Commit your change](#commit-your-change)
+* [Create a pull request](#create-a-pull-request)
+* [Get your pull request reviewed](#get-your-pull-request-reviewed)
 
 If you have any questions about, please reach out using one of the methods listed in [contact].
 
@@ -31,6 +32,7 @@ All the work in etcd project is tracked in [github issue tracker].
 Issues should be properly labeled making it easy to find something for you.
 
 Depending on your interest and experience you should check different labels:
+
 * If you are just starting, check issues labeled with [good first issue].
 * When you feel more conformable in your contributions, checkout [help wanted].
 * Advanced contributors can try to help with issues labeled [priority/important] covering most relevant work at the time.
@@ -60,14 +62,15 @@ This is the original etcd development environment, is most supported and is back
 
 Follow the steps below to setup the environment:
 
-- [Clone the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-- Install Go by following [installation](https://go.dev/doc/install). Please check minimal go version in [go.mod file](./go.mod#L3).
-- Install build tools (`make`):
-  - For debian based distributions you can run `sudo apt-get install build-essential`
-- Verify that everything is installed by running `make build`
+* [Clone the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+* Install Go by following [installation](https://go.dev/doc/install). Please check minimal go version in [go.mod file](./go.mod#L3).
+* Install build tools (`make`):
+  * For debian based distributions you can run `sudo apt-get install build-essential`
+* Verify that everything is installed by running `make build`
 
 Note: `make build` runs with `-v`. Other build flags can be added through env `GO_BUILD_FLAGS`, **if required**. Eg.,
-```console
+
+```bash
 GO_BUILD_FLAGS="-buildmode=pie" make build
 ```
 
@@ -93,15 +96,17 @@ etcd code should follow coding style suggested by the Golang community.
 See the [style doc](https://github.com/golang/go/wiki/CodeReviewComments) for details.
 
 Please ensure that your change passes static analysis (requires [golangci-lint](https://golangci-lint.run/usage/install/)):
-- `make verify` to verify if all checks pass.
-- `make verify-*` to verify a single check, for example `make verify-bom` to verify if bill-of-materials.json file is up-to-date.
-- `make fix` to fix all checks.
-- `make fix-*` to fix a single checks, for example `make fix-bom` to update bill-of-materials.json.
+
+* `make verify` to verify if all checks pass.
+* `make verify-*` to verify a single check, for example `make verify-bom` to verify if bill-of-materials.json file is up-to-date.
+* `make fix` to fix all checks.
+* `make fix-*` to fix a single checks, for example `make fix-bom` to update bill-of-materials.json.
 
 Please ensure that your change passes tests.
-- `make test-unit` to run unit tests.
-- `make test-integration` to run integration tests.
-- `make test-e2e` to run e2e tests.
+
+* `make test-unit` to run unit tests.
+* `make test-integration` to run integration tests.
+* `make test-e2e` to run e2e tests.
 
 All changes are expected to come with unit test.
 All new features are expected to have either e2e or integration tests.
@@ -109,6 +114,7 @@ All new features are expected to have either e2e or integration tests.
 ## Commit your change
 
 etcd follows a rough convention for commit messages:
+
 * First line:
   * Should start name of package (for example `etcdserver`, `etcdctl`) followed by `:` character.
   * Describe the `what` behind the change
@@ -116,7 +122,8 @@ etcd follows a rough convention for commit messages:
 * Last line should be `Signed-off-by: firstname lastname <email@example.com>` (can be automatically generate by providing `--signoff` to git commit command).
 
 Example of commit message:
-```
+
+```text
 etcdserver: add grpc interceptor to log info on incoming requests
 
 To improve debuggability of etcd v3. Added a grpc interceptor to log
